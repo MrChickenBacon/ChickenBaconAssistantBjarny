@@ -1,0 +1,7 @@
+C:\KODING\VoiceRecTest\VoiceRecTest\bin\Debug\VoiceRecTest.exe.config
+C:\KODING\VoiceRecTest\VoiceRecTest\bin\Debug\VoiceRecTest.exe
+C:\KODING\VoiceRecTest\VoiceRecTest\bin\Debug\VoiceRecTest.pdb
+C:\KODING\VoiceRecTest\VoiceRecTest\obj\Debug\VoiceRecTest.csprojAssemblyReference.cache
+C:\KODING\VoiceRecTest\VoiceRecTest\obj\Debug\VoiceRecTest.csproj.CoreCompileInputs.cache
+C:\KODING\VoiceRecTest\VoiceRecTest\obj\Debug\VoiceRecTest.exe
+C:\KODING\VoiceRecTest\VoiceRecTest\obj\Debug\VoiceRecTest.pdb
