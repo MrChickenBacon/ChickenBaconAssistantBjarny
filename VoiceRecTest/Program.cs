@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Media;
 using System.Net;
 using System.Speech.Recognition;
 
@@ -7,14 +8,12 @@ namespace VoiceRecTest
 {
     class Program
     {
-
-
         static void Main(string[] args)
         {
             SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
 
             Choices commands = new Choices();
-            commands.Add(new string[] { "hello", "say my name", "open chrome", "what day is it today", "download a cool wallpaper" });
+            commands.Add(new string[] { "hello", "say my name", "open chrome", "what day is it today", "download a cool wallpaper", "play me a cool song", "tada" });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
             Grammar grammar = new Grammar(gBuilder);
@@ -44,7 +43,7 @@ namespace VoiceRecTest
                     Console.WriteLine("Here yah go!");
                     break;
                 case "what day is it today":
-                    Console.WriteLine("It's" + DateTime.Now.DayOfWeek);
+                    Console.WriteLine("It's " + DateTime.Now.DayOfWeek);
                     break;
                 case "download a cool wallpaper":
                     using (WebClient client = new WebClient())
@@ -53,6 +52,15 @@ namespace VoiceRecTest
                         client.DownloadFile(new Uri("https://github.com/MrChickenBacon/HotPink/raw/master/Hotpink/Back.PNG"), $@"{user}\desktop\Cool Wallpaper.PNG");
                     }
                     Console.WriteLine("I've placed it on the desktop for you :)");
+                    break;
+                case "play me a cool song":
+                    Console.WriteLine("Oh! It's Party time!");
+                    SoundPlayer player1 = new SoundPlayer("https://github.com/MrChickenBacon/Surge/raw/master/town.wav");
+                    player1.Play();
+                    break;
+                case "tada":
+                    SoundPlayer player2 = new SoundPlayer(@"C:\Windows\media\tada.wav");
+                    player2.Play();
                     break;
             }
         }
