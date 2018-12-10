@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq.Expressions;
 using System.Media;
 using System.Net;
 using System.Runtime.InteropServices;
-using System.Speech.Recognition;
 using System.Speech.Synthesis;
+using Choices = Microsoft.Speech.Recognition.Choices;
+using Grammar = Microsoft.Speech.Recognition.Grammar;
+using GrammarBuilder = Microsoft.Speech.Recognition.GrammarBuilder;
+using RecognizeMode = Microsoft.Speech.Recognition.RecognizeMode;
+using SpeechRecognitionEngine = Microsoft.Speech.Recognition.SpeechRecognitionEngine;
+using SpeechRecognizedEventArgs = Microsoft.Speech.Recognition.SpeechRecognizedEventArgs;
 
 namespace VoiceRecTest
 {
@@ -17,6 +21,7 @@ namespace VoiceRecTest
 
         public static string Mine { get; set; }
         public static int Emil { get; set; }
+        public static string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}";
 
         private static readonly SpeechSynthesizer synthesizer = new SpeechSynthesizer();
 
@@ -24,7 +29,7 @@ namespace VoiceRecTest
         {
             SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
             Choices commands = new Choices();
-            commands.Add(new string[] { "hello computer", "say my name", "open chrome", "what day is it today", "download a hot wallpaper", "play me a cool song", "qvamma", "payday", "i told him", "nein", "email", "name count", "mine mine", "put on some christmas music", "69", "yes", "Eskil" });
+            commands.Add(new string[] { "hello computer", "say my name", "open chrome", "what day is it today", "put on a hot wallpaper", "put on a country wallpaper", "put on bathman wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "nein", "email", "name count", "mine mine", "put on some christmas music", "69", "yes", "Eskil", "Thank you", "That's what she said" });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
             Grammar grammar = new Grammar(gBuilder);
@@ -44,7 +49,9 @@ namespace VoiceRecTest
             switch (e.Result.Text)
             {
                 case "hello computer":
-                    Console.WriteLine("Hello! Chris");
+                    Console.WriteLine("Hello?");
+                    SoundPlayer player8 = new SoundPlayer($@"{ path }\desktop\Hello.wav");
+                    player8.Play();
                     break;
                 case "say my name":
                     Console.WriteLine("Chris?! Is that you?");
@@ -57,13 +64,20 @@ namespace VoiceRecTest
                     synthesizer.SpeakAsync("It's " + DateTime.Now.DayOfWeek);
                     Console.WriteLine("It's " + DateTime.Now.DayOfWeek);
                     break;
-                case "download a hot wallpaper":
-                    var user = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                case "put on a hot wallpaper":
                     using (WebClient client = new WebClient())
                     {
-                        client.DownloadFile(new Uri("https://github.com/MrChickenBacon/HotPink/raw/master/Hotpink/Back.PNG"), $@"{user}\desktop\Hot Wallpaper.PNG");
+                        client.DownloadFile(new Uri("https://github.com/MrChickenBacon/HotPink/raw/master/Hotpink/Back.PNG"), $@"{path}\desktop\Hot Wallpaper.PNG");
                     }
-                    SystemParametersInfo(0x0014, 0, $@"{user}\desktop\Hot Wallpaper.PNG", 0x0001);
+                    SystemParametersInfo(0x0014, 0, $@"{path}\desktop\Hot Wallpaper.PNG", 0x0001);
+                    Console.WriteLine("Enjoy :)");
+                    break;
+                case "put on a country wallpaper":
+                    SystemParametersInfo(0x0014, 0, $@"{path}\pictures\country.jpg", 0x0001);
+                    Console.WriteLine("Enjoy :)");
+                    break;
+                case "put on bathman wallpaper":
+                    SystemParametersInfo(0x0014, 0, $@"{path}\pictures\bathman.jpg", 0x0001);
                     Console.WriteLine("Enjoy :)");
                     break;
                 case "play me a cool song":
@@ -76,30 +90,25 @@ namespace VoiceRecTest
                     catch (Exception exception)
                     {
                         Console.WriteLine(exception);
-
                     }
-
                     break;
                 case "qvamma":
                     SoundPlayer player2 = new SoundPlayer(@"C:\Windows\media\tada.wav");
                     player2.Play();
                     break;
-                case "payday":
+                case "payday payday":
                     Console.WriteLine("Payday!");
-                    var user1 = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    SoundPlayer player3 = new SoundPlayer($@"{ user1 }\desktop\ka-ching.wav");
+                    SoundPlayer player3 = new SoundPlayer($@"{ path }\desktop\ka-ching.wav");
                     player3.Play();
                     break;
                 case "i told him":
                     Console.WriteLine("Yeah!");
-                    var user3 = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    SoundPlayer player4 = new SoundPlayer($@"{ user3 }\desktop\Mmm.wav");
+                    SoundPlayer player4 = new SoundPlayer($@"{ path }\desktop\Mmm.wav");
                     player4.Play();
                     break;
                 case "mine mine":
                     Console.WriteLine("Mine?");
-                    var user4 = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    SoundPlayer player5 = new SoundPlayer($@"{ user4 }\desktop\mine.wav");
+                    SoundPlayer player5 = new SoundPlayer($@"{ path }\desktop\mine.wav");
                     player5.Play();
                     break;
                 case "email":
@@ -113,8 +122,7 @@ namespace VoiceRecTest
                     break;
                 case "nein":
                     Console.WriteLine("Nine?");
-                    var user5 = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    SoundPlayer player6 = new SoundPlayer($@"{ user5 }\desktop\nein.wav");
+                    SoundPlayer player6 = new SoundPlayer($@"{ path }\desktop\nein.wav");
                     player6.Play();
                     break;
                 case "put on some christmas music":
@@ -129,6 +137,14 @@ namespace VoiceRecTest
                     break;
                 case "Eskil":
                     synthesizer.SpeakAsync("He's that guitar man right?");
+                    break;
+                case "Thank you":
+                    synthesizer.SpeakAsync("Your welcome!");
+                    break;
+                case "That's what she said":
+                    Console.WriteLine("Yee");
+                    SoundPlayer player7 = new SoundPlayer($@"{ path }\desktop\crowd laughter.wav");
+                    player7.Play();
                     break;
             }
         }

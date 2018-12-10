@@ -5,3 +5,5 @@ C:\Users\Get Academy\source\repos\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceR
 C:\Users\Get Academy\source\repos\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.csproj.CoreCompileInputs.cache
 C:\Users\Get Academy\source\repos\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.exe
 C:\Users\Get Academy\source\repos\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.pdb
+C:\Users\Get Academy\source\repos\VoiceRecTest\VoiceRecTest\bin\x64\Debug\Microsoft.Speech.dll
+C:\Users\Get Academy\source\repos\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.csproj.CopyComplete
