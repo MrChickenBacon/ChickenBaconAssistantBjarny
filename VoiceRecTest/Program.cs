@@ -28,8 +28,8 @@ namespace VoiceRecTest
             commands.Add(new string[] { "bjarny", "hello computer", "say my name", "open chrome", "what day is it today",
                 "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine",
                 "nein nein nein", "email", "name count", "put on some christmas music", "yes", "no", "eskil", "nice",
-                "that's what she said", "play mario medley", "play chill christmas music", "crowd goes wild",
-                "what's your name", "eh", "hear crickets?" });
+                "that's what she said", "play mario medley", "play chill music", "crowd goes wild", "where can i get this code?",
+                "what's your name", "eh", "hear crickets?", "open visual studio", "open V S Code", "open my git hub" });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
             Grammar grammar = new Grammar(gBuilder);
@@ -162,7 +162,7 @@ namespace VoiceRecTest
                     SoundPlayer player10 = new SoundPlayer($@"{ Path }\desktop\sounds\mario medley.wav");
                     player10.Play();
                     break;
-                case "play chill christmas music":
+                case "play chill music":
                     Console.WriteLine("Playing.");
                     SoundPlayer player11 = new SoundPlayer($@"{ Path }\desktop\sounds\chillmusic.wav");
                     player11.Play();
@@ -181,6 +181,24 @@ namespace VoiceRecTest
                     Console.WriteLine("Crickets.");
                     SoundPlayer player14 = new SoundPlayer($@"{ Path }\desktop\sounds\crickets.wav");
                     player14.Play();
+                    break;
+                case "where can i get this code?":
+                    Console.WriteLine("https://github.com/MrChickenBacon/ChickenBacon-Assistant");
+                    synthesizer.SpeakAsync("Look for ChickenBacon Assistant on github. Go to https://github.com/MrChickenBacon/ChickenBacon-Assistant");
+                    break;
+                case "open visual studio":
+                    Console.WriteLine("Opening VS");
+                    Process.Start(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2017");
+                    synthesizer.SpeakAsync("Code away!");
+                    break;
+                case "open V S Code":
+                    Console.WriteLine("Opening VS Code");
+                    Process.Start(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\Visual Studio Code");
+                    synthesizer.SpeakAsync("Code away!");
+                    break;
+                case "open my git hub":
+                    Process.Start("https://github.com/MrChickenBacon?tab=repositories");
+                    synthesizer.SpeakAsync("Opening");
                     break;
             }
         }
