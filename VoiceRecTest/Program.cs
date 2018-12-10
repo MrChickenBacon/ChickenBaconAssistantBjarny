@@ -24,7 +24,7 @@ namespace VoiceRecTest
         {
             SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
             Choices commands = new Choices();
-            commands.Add(new string[] { "hello computer", "say my name", "open chrome", "what day is it today", "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "nein nein", "email", "name count", "mine mine", "put on some christmas music", "69", "yes", "Eskil" });
+            commands.Add(new string[] { "hello computer", "say my name", "open chrome", "what day is it today", "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine", "nein nein", "email", "name count", "put on some christmas music", "69", "yes", "eskil", "nice" });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
             Grammar grammar = new Grammar(gBuilder);
@@ -44,7 +44,8 @@ namespace VoiceRecTest
             switch (e.Result.Text)
             {
                 case "hello computer":
-                    Console.WriteLine("Hello! Chris");
+                    SoundPlayer player7 = new SoundPlayer($@"{ Path }\desktop\sounds\hello.wav");
+                    player7.Play();
                     break;
                 case "say my name":
                     Console.WriteLine("Chris?! Is that you?");
@@ -83,17 +84,17 @@ namespace VoiceRecTest
                     break;
                 case "payday payday":
                     Console.WriteLine("Payday!");
-                    SoundPlayer player3 = new SoundPlayer($@"{ Path }\desktop\ka-ching.wav");
+                    SoundPlayer player3 = new SoundPlayer($@"{ Path }\desktop\sounds\ka-ching.wav");
                     player3.Play();
                     break;
                 case "i told him":
                     Console.WriteLine("Yeah!");
-                    SoundPlayer player4 = new SoundPlayer($@"{ Path }\desktop\Mmm.wav");
+                    SoundPlayer player4 = new SoundPlayer($@"{ Path }\desktop\sounds\Mmm.wav");
                     player4.Play();
                     break;
                 case "mine mine":
                     Console.WriteLine("Mine?");
-                    SoundPlayer player5 = new SoundPlayer($@"{ Path }\desktop\mine.wav");
+                    SoundPlayer player5 = new SoundPlayer($@"{ Path }\desktop\sounds\mine.wav");
                     player5.Play();
                     break;
                 case "email":
@@ -107,7 +108,7 @@ namespace VoiceRecTest
                     break;
                 case "nein nein":
                     Console.WriteLine("Nine?");
-                    SoundPlayer player6 = new SoundPlayer($@"{ Path }\desktop\nein.wav");
+                    SoundPlayer player6 = new SoundPlayer($@"{ Path }\desktop\sounds\nein.wav");
                     player6.Play();
                     break;
                 case "put on some christmas music":
@@ -120,8 +121,13 @@ namespace VoiceRecTest
                 case "yes":
                     synthesizer.SpeakAsync("no!");
                     break;
-                case "Eskil":
+                case "eskil":
                     synthesizer.SpeakAsync("He's that guitar man right?");
+                    break;
+                case "nice":
+                    Console.WriteLine("Nice?");
+                    SoundPlayer player8 = new SoundPlayer($@"{ Path }\desktop\sounds\nice.wav");
+                    player8.Play();
                     break;
             }
         }
