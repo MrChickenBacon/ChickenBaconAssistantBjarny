@@ -50,7 +50,7 @@ namespace VoiceRecTest
             {
                 case "hello computer":
                     Console.WriteLine("Hello?");
-                    SoundPlayer player8 = new SoundPlayer($@"{ path }\desktop\Hello.wav");
+                    SoundPlayer player8 = new SoundPlayer($@"{ path }\desktop\sounds\Hello.wav");
                     player8.Play();
                     break;
                 case "say my name":
@@ -98,17 +98,17 @@ namespace VoiceRecTest
                     break;
                 case "payday payday":
                     Console.WriteLine("Payday!");
-                    SoundPlayer player3 = new SoundPlayer($@"{ path }\desktop\ka-ching.wav");
+                    SoundPlayer player3 = new SoundPlayer($@"{ path }\desktop\sounds\ka-ching.wav");
                     player3.Play();
                     break;
                 case "i told him":
                     Console.WriteLine("Yeah!");
-                    SoundPlayer player4 = new SoundPlayer($@"{ path }\desktop\Mmm.wav");
+                    SoundPlayer player4 = new SoundPlayer($@"{ path }\desktop\sounds\Mmm.wav");
                     player4.Play();
                     break;
                 case "mine mine":
                     Console.WriteLine("Mine?");
-                    SoundPlayer player5 = new SoundPlayer($@"{ path }\desktop\mine.wav");
+                    SoundPlayer player5 = new SoundPlayer($@"{ path }\desktop\sounds\mine.wav");
                     player5.Play();
                     break;
                 case "email":
@@ -122,7 +122,7 @@ namespace VoiceRecTest
                     break;
                 case "nein":
                     Console.WriteLine("Nine?");
-                    SoundPlayer player6 = new SoundPlayer($@"{ path }\desktop\nein.wav");
+                    SoundPlayer player6 = new SoundPlayer($@"{ path }\desktop\sounds\nein.wav");
                     player6.Play();
                     break;
                 case "put on some christmas music":
@@ -143,7 +143,7 @@ namespace VoiceRecTest
                     break;
                 case "That's what she said":
                     Console.WriteLine("Yee");
-                    SoundPlayer player7 = new SoundPlayer($@"{ path }\desktop\crowd laughter.wav");
+                    SoundPlayer player7 = new SoundPlayer($@"{ path }\desktop\sounds\crowd laughter.wav");
                     player7.Play();
                     break;
             }
