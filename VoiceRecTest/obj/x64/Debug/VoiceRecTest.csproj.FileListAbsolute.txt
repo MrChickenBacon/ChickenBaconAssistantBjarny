@@ -5,3 +5,10 @@ C:\Users\Get Academy\source\repos\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceR
 C:\Users\Get Academy\source\repos\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.csproj.CoreCompileInputs.cache
 C:\Users\Get Academy\source\repos\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.exe
 C:\Users\Get Academy\source\repos\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.pdb
+C:\KODING\VoiceRecTest\VoiceRecTest\bin\x64\Debug\VoiceRecTest.exe.config
+C:\KODING\VoiceRecTest\VoiceRecTest\bin\x64\Debug\VoiceRecTest.exe
+C:\KODING\VoiceRecTest\VoiceRecTest\bin\x64\Debug\VoiceRecTest.pdb
+C:\KODING\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.csprojAssemblyReference.cache
+C:\KODING\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.csproj.CoreCompileInputs.cache
+C:\KODING\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.exe
+C:\KODING\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.pdb
