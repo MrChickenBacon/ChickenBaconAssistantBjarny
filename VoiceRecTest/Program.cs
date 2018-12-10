@@ -5,6 +5,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
+using System.Threading;
 
 namespace VoiceRecTest
 {
@@ -24,7 +25,11 @@ namespace VoiceRecTest
         {
             SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
             Choices commands = new Choices();
-            commands.Add(new string[] { "hello computer", "say my name", "open chrome", "what day is it today", "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine", "nein nein", "email", "name count", "put on some christmas music", "69", "yes", "eskil", "nice" });
+            commands.Add(new string[] { "bjarny", "hello computer", "say my name", "open chrome", "what day is it today",
+                "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine",
+                "nein nein nein", "email", "name count", "put on some christmas music", "yes", "no", "eskil", "nice",
+                "that's what she said", "play mario medley", "play chill christmas music", "crowd goes wild",
+                "what's your name", "eh", "hear crickets?" });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
             Grammar grammar = new Grammar(gBuilder);
@@ -35,8 +40,12 @@ namespace VoiceRecTest
 
             recEngine.RecognizeAsync(RecognizeMode.Multiple);
 
-            Console.WriteLine("Waiting for voice command.");
+            SoundPlayer player0 = new SoundPlayer($@"{ Path }\desktop\sounds\start.wav");
+            player0.Play();
+            Thread.Sleep(1000);
+            Console.WriteLine("Waiting for voice input.");
             Console.ReadKey();
+
         }
 
         private static void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
@@ -47,8 +56,18 @@ namespace VoiceRecTest
                     SoundPlayer player7 = new SoundPlayer($@"{ Path }\desktop\sounds\hello.wav");
                     player7.Play();
                     break;
+                case "what's your name":
+                    synthesizer.SpeakAsync("It's me, Mario!");
+                    Thread.Sleep(1000);
+                    synthesizer.SpeakAsync("Nono. I kid. My name is Chickenbacon, Assistant.");
+                    Thread.Sleep(1000);
+                    synthesizer.SpeakAsync("Or just call me Bjarny");
+                    break;
                 case "say my name":
-                    Console.WriteLine("Chris?! Is that you?");
+                    synthesizer.SpeakAsync("ChickenBacon. Our master creator");
+                    break;
+                case "bjarny":
+                    synthesizer.SpeakAsync("How may i help you today?");
                     break;
                 case "open chrome":
                     Process.Start(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe");
@@ -106,8 +125,8 @@ namespace VoiceRecTest
                     Console.WriteLine(Emil);
                     synthesizer.SpeakAsync("Emil has been said " + Emil + " times");
                     break;
-                case "nein nein":
-                    Console.WriteLine("Nine?");
+                case "nein nein nein":
+                    Console.WriteLine("Nine!");
                     SoundPlayer player6 = new SoundPlayer($@"{ Path }\desktop\sounds\nein.wav");
                     player6.Play();
                     break;
@@ -115,19 +134,53 @@ namespace VoiceRecTest
                     Console.WriteLine("Jingle");
                     Process.Start("https://www.youtube.com/watch?v=QOAkVCigk5Y");
                     break;
-                case "69":
-                    synthesizer.SpeakAsync("6 9 six to the nine. YOYOYO, hey to the ho!");
-                    break;
                 case "yes":
-                    synthesizer.SpeakAsync("no!");
+                    Console.WriteLine("No");
+                    synthesizer.SpeakAsync("No");
+                    break;
+                case "no":
+                    Console.WriteLine("No");
+                    synthesizer.SpeakAsync("yes");
+                    Thread.Sleep(1000);
+                    synthesizer.SpeakAsync("Ah! you got me!");
                     break;
                 case "eskil":
                     synthesizer.SpeakAsync("He's that guitar man right?");
                     break;
                 case "nice":
-                    Console.WriteLine("Nice?");
+                    Console.WriteLine("Nice");
                     SoundPlayer player8 = new SoundPlayer($@"{ Path }\desktop\sounds\nice.wav");
                     player8.Play();
+                    break;
+                case "that's what she said":
+                    Console.WriteLine("Yey");
+                    SoundPlayer player9 = new SoundPlayer($@"{ Path }\desktop\sounds\crowd laughter.wav");
+                    player9.Play();
+                    break;
+                case "play mario medley":
+                    Console.WriteLine("Playing.");
+                    SoundPlayer player10 = new SoundPlayer($@"{ Path }\desktop\sounds\mario medley.wav");
+                    player10.Play();
+                    break;
+                case "play chill christmas music":
+                    Console.WriteLine("Playing.");
+                    SoundPlayer player11 = new SoundPlayer($@"{ Path }\desktop\sounds\chillmusic.wav");
+                    player11.Play();
+                    break;
+                case "eh":
+                    Console.WriteLine("Nope.");
+                    SoundPlayer player12 = new SoundPlayer($@"{ Path }\desktop\sounds\nope.wav");
+                    player12.Play();
+                    break;
+                case "crowd goes wild":
+                    Console.WriteLine("Wild crowd.");
+                    SoundPlayer player13 = new SoundPlayer($@"{ Path }\desktop\sounds\Applause.wav");
+                    player13.Play();
+                    break;
+                case "hear crickets?":
+                    Console.WriteLine("Crickets.");
+                    SoundPlayer player14 = new SoundPlayer($@"{ Path }\desktop\sounds\crickets.wav");
+                    player14.Play();
                     break;
             }
         }
