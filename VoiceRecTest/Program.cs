@@ -25,9 +25,9 @@ namespace VoiceRecTest
         {
             SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
             Choices commands = new Choices();
-            commands.Add(new string[] { "bjarny", "hello computer", "say my name", "open chrome", "what day is it today",
+            commands.Add(new string[] { "bjarny", "hello computer", "say my name", "open up browser chrome", "what day is it today",
                 "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine",
-                "nein nein nein", "email", "name count", "put on some christmas music", "yes", "no", "eskil", "nice",
+                "nein nein nein", "email", "name count", "put on some christmas music", "yes", "eskil", "nice",
                 "that's what she said", "play mario medley", "play chill music", "crowd goes wild", "where can i get this code?",
                 "what's your name", "eh", "hear crickets?", "open visual studio", "open V S Code", "open my git hub" });
             GrammarBuilder gBuilder = new GrammarBuilder();
@@ -69,7 +69,7 @@ namespace VoiceRecTest
                 case "bjarny":
                     synthesizer.SpeakAsync("How may i help you today?");
                     break;
-                case "open chrome":
+                case "open up browser chrome":
                     Process.Start(@"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe");
                     Console.WriteLine("Here yah go!");
                     break;
@@ -138,12 +138,12 @@ namespace VoiceRecTest
                     Console.WriteLine("No");
                     synthesizer.SpeakAsync("No");
                     break;
-                case "no":
-                    Console.WriteLine("No");
-                    synthesizer.SpeakAsync("yes");
-                    Thread.Sleep(1000);
-                    synthesizer.SpeakAsync("Ah! you got me!");
-                    break;
+                //case "no":
+                //    Console.WriteLine("No");
+                //    synthesizer.SpeakAsync("yes");
+                //    Thread.Sleep(1000);
+                //    synthesizer.SpeakAsync("Ah! you got me!");
+                //    break;
                 case "eskil":
                     synthesizer.SpeakAsync("He's that guitar man right?");
                     break;
@@ -193,7 +193,7 @@ namespace VoiceRecTest
                     break;
                 case "open V S Code":
                     Console.WriteLine("Opening VS Code");
-                    Process.Start(@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio Code\Visual Studio Code");
+                    Process.Start(@"C:\Users\Get Academy\AppData\Local\Programs\Microsoft VS Code\Code.exe");
                     synthesizer.SpeakAsync("Code away!");
                     break;
                 case "open my git hub":
