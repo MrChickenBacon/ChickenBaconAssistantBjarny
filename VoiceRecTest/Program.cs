@@ -29,7 +29,7 @@ namespace VoiceRecTest
                 "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine",
                 "nein nein nein", "email", "name count", "put on some christmas music", "yes", "eskil", "nice",
                 "that's what she said", "play mario medley", "play chill music", "crowd goes wild", "where can i get this code?",
-                "what's your name", "eh", "hear crickets?", "open visual studio", "open V S Code", "open my git hub" });
+                "what's your name", "eh", "hear crickets?", "open visual studio", "open V S Code", "open my git hub", "new random wallpaper" });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
             Grammar grammar = new Grammar(gBuilder);
@@ -83,6 +83,12 @@ namespace VoiceRecTest
                         client.DownloadFile(new Uri("https://github.com/MrChickenBacon/HotPink/raw/master/Hotpink/Back.PNG"), $@"{Path}\desktop\Hot Wallpaper.PNG");
                     }
                     SystemParametersInfo(0x0014, 0, $@"{Path}\desktop\Hot Wallpaper.PNG", 0x0001);
+                    Console.WriteLine("Enjoy :)");
+                    break;
+                case "new random wallpaper":
+                    Random num = new Random();
+                    int picNumber = num.Next(1, 550);
+                    SystemParametersInfo(0x0014, 0, $@"{Path}\desktop\wallpapers\{picNumber}.jpg", 0x0001);
                     Console.WriteLine("Enjoy :)");
                     break;
                 case "play me a cool song":
