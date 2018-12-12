@@ -19,33 +19,54 @@ namespace VoiceRecTest
         public static int Emil { get; set; }
         public static string Path = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}";
 
+        static Random random = new Random();
+
+        static int Numbers()
+        {
+            int number = random.Next(1, 550);
+            return number;
+        }
+
         private static readonly SpeechSynthesizer synthesizer = new SpeechSynthesizer();
 
         static void Main(string[] args)
         {
-            SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
-            Choices commands = new Choices();
-            commands.Add(new string[] { "bjarny", "hello computer", "put on country wallpaper", "put on bathman wallpaper", "say my name", "open up browser chrome", "what day is it today",
-                "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine",
-                /*"nein nein nein nein",*/ "email", "name count", "put on some christmas music", "yes", "eskil", "nice",
-                "that's what she said", "play mario medley", "play chill music", "crowd goes wild", "where can i get this code?",
-                "what's your name", "eh", "hear crickets?", "open visual studio", "open V S Code", "open my git hub", "new random wallpaper" });
-            GrammarBuilder gBuilder = new GrammarBuilder();
-            gBuilder.Append(commands);
-            Grammar grammar = new Grammar(gBuilder);
-
-            recEngine.LoadGrammarAsync(grammar);
-            recEngine.SetInputToDefaultAudioDevice();
-            recEngine.SpeechRecognized += recEngine_SpeechRecognized;
-
-            recEngine.RecognizeAsync(RecognizeMode.Multiple);
-
-            SoundPlayer player0 = new SoundPlayer($@"{ Path }\desktop\sounds\start.wav");
+            Engine();
+            SoundPlayer player0 = new SoundPlayer($@"{Path}\desktop\sounds\start.wav");
             player0.Play();
             Thread.Sleep(1000);
             Console.WriteLine("Waiting for voice input.");
             Console.ReadKey();
+        }
 
+        private static void Engine()
+        {
+            SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
+            var gBuilder = CommandsGrammarBuilder();
+            Grammar grammar = new Grammar(gBuilder);
+            recEngine.LoadGrammarAsync(grammar);
+            recEngine.SetInputToDefaultAudioDevice();
+            recEngine.SpeechRecognized += recEngine_SpeechRecognized;
+            recEngine.RecognizeAsync(RecognizeMode.Multiple);
+        }
+
+        private static GrammarBuilder CommandsGrammarBuilder()
+        {
+            Choices commands = new Choices();
+            commands.Add(new string[]
+            {
+                "bjarny", "hello computer", "put on country wallpaper", "put on bathman wallpaper", "say my name",
+                "open up browser chrome", "what day is it today",
+                "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine",
+                /*"nein nein nein nein",*/ "email", "name count", "put on some christmas music", "yes", "eskil", "nice",
+                "that's what she said", "play mario medley", "play chill music", "crowd goes wild",
+                "where can i get this code?",
+                "what's your name", "eh", "hear crickets?", "open visual studio", "open V S Code", "open my git hub",
+                "new random wallpaper"
+            });
+            GrammarBuilder gBuilder = new GrammarBuilder();
+            gBuilder.Append(commands);
+            return gBuilder;
         }
 
         private static void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
@@ -86,9 +107,7 @@ namespace VoiceRecTest
                     Console.WriteLine("Enjoy :)");
                     break;
                 case "new random wallpaper":
-                    Random num = new Random();
-                    int picNumber = num.Next(1, 550);
-                    SystemParametersInfo(0x0014, 0, $@"{Path}\desktop\wallpapers\{picNumber}.jpg", 0x0001);
+                    SystemParametersInfo(0x0014, 0, $@"{Path}\desktop\wallpapers\{Numbers()}.jpg", 0x0001);
                     Console.WriteLine("Enjoy :)");
                     break;
                 case "put on bathman wallpaper":
