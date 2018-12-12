@@ -25,7 +25,7 @@ namespace VoiceRecTest
         {
             SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
             Choices commands = new Choices();
-            commands.Add(new string[] { "bjarny", "hello computer", "say my name", "open up browser chrome", "what day is it today",
+            commands.Add(new string[] { "bjarny", "hello computer", "put on country wallpaper", "put on bathman wallpaper", "say my name", "open up browser chrome", "what day is it today",
                 "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine",
                 "nein nein nein", "email", "name count", "put on some christmas music", "yes", "eskil", "nice",
                 "that's what she said", "play mario medley", "play chill music", "crowd goes wild", "where can i get this code?",
@@ -89,6 +89,14 @@ namespace VoiceRecTest
                     Random num = new Random();
                     int picNumber = num.Next(1, 550);
                     SystemParametersInfo(0x0014, 0, $@"{Path}\desktop\wallpapers\{picNumber}.jpg", 0x0001);
+                    Console.WriteLine("Enjoy :)");
+                    break;
+                case "put on bathman wallpaper":
+                    SystemParametersInfo(0x0014, 0, $@"{Path}\desktop\wallpapers\bathman.jpg", 0x0001);
+                    Console.WriteLine("Enjoy :)");
+                    break;
+                case "put on country wallpaper":
+                    SystemParametersInfo(0x0014, 0, $@"{Path}\desktop\wallpapers\country.jpg", 0x0001);
                     Console.WriteLine("Enjoy :)");
                     break;
                 case "play me a cool song":
