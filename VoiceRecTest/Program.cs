@@ -31,23 +31,25 @@ namespace VoiceRecTest
 
         static void Main(string[] args)
         {
-            Engine();
+            SpeechRecoEngine();
             SoundPlayer player0 = new SoundPlayer($@"{Path}\desktop\sounds\start.wav");
             player0.Play();
             Thread.Sleep(1000);
             Console.WriteLine("Waiting for voice input.");
-            Console.ReadKey();
+            Console.ReadLine();
         }
 
-        private static void Engine()
+        private static void SpeechRecoEngine()
         {
             SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
             var gBuilder = CommandsGrammarBuilder();
             Grammar grammar = new Grammar(gBuilder);
             recEngine.LoadGrammarAsync(grammar);
             recEngine.SetInputToDefaultAudioDevice();
+            //recEngine.SpeechRecognized += recEngine_Special;
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
             recEngine.RecognizeAsync(RecognizeMode.Multiple);
+            //recEngine.
         }
 
         private static GrammarBuilder CommandsGrammarBuilder()
@@ -58,16 +60,22 @@ namespace VoiceRecTest
                 "bjarny", "hello computer", "put on country wallpaper", "put on bathman wallpaper", "say my name",
                 "open up browser chrome", "what day is it today",
                 "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine",
-                /*"nein nein nein nein",*/ "email", "name count", "put on some christmas music", "yes", "eskil", "nice",
+                /*"nein nein nein nein",*/ /*"no",*/ "email", "name count", "put on some christmas music", "yes", "Who is eskil?", "nice",
                 "that's what she said", "play mario medley", "play chill music", "crowd goes wild",
                 "where can i get this code?",
                 "what's your name", "eh", "hear crickets?", "open visual studio", "open V S Code", "open my git hub",
-                "new random wallpaper"
+                "new random wallpaper",
+                "help quamme is abusing you"
             });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
             return gBuilder;
         }
+
+        //public static void recEngine_Special(object sender, SpeechRecognizedEventArgs e)
+        //{
+        //    Use in future ?
+        //}
 
         private static void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
@@ -171,13 +179,13 @@ namespace VoiceRecTest
                     Console.WriteLine("No");
                     synthesizer.SpeakAsync("No");
                     break;
-                //case "no":
-                //    Console.WriteLine("No");
-                //    synthesizer.SpeakAsync("yes");
-                //    Thread.Sleep(1000);
-                //    synthesizer.SpeakAsync("Ah! you got me!");
-                //    break;
-                case "eskil":
+                case "no":
+                    Console.WriteLine("No");
+                    synthesizer.SpeakAsync("yes");
+                    Thread.Sleep(1000);
+                    synthesizer.SpeakAsync("Ah! you got me!");
+                    break;
+                case "Who is eskil?":
                     synthesizer.SpeakAsync("He's that guitar man right?");
                     break;
                 case "nice":
@@ -226,12 +234,25 @@ namespace VoiceRecTest
                     break;
                 case "open V S Code":
                     Console.WriteLine("Opening VS Code");
-                    Process.Start(@"C:\Users\Get Academy\AppData\Local\Programs\Microsoft VS Code\Code.exe");
+                    try
+                    {
+                        Process.Start($@"{ Path }\AppData\Local\Programs\Microsoft VS Code\Code.exe");
+                    }
+                    catch (Exception exception)
+                    {
+                        Process.Start(@"C:\Program Files\Microsoft VS Code\Code.exe");
+                    }
                     synthesizer.SpeakAsync("Code away!");
                     break;
                 case "open my git hub":
                     Process.Start("https://github.com/MrChickenBacon?tab=repositories");
                     synthesizer.SpeakAsync("Opening");
+                    break;
+                case "help quamme is abusing you":
+                    synthesizer.SpeakAsync("okidoki, i will come back in 1 minute.");
+                    Thread.Sleep(60000);
+                    synthesizer.SpeakAsync("I'm back!");
+                    Console.WriteLine("Back!");
                     break;
             }
         }
