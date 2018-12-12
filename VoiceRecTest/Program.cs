@@ -27,7 +27,7 @@ namespace VoiceRecTest
             Choices commands = new Choices();
             commands.Add(new string[] { "bjarny", "hello computer", "put on country wallpaper", "put on bathman wallpaper", "say my name", "open up browser chrome", "what day is it today",
                 "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine",
-                "nein nein nein", "email", "name count", "put on some christmas music", "yes", "eskil", "nice",
+                /*"nein nein nein nein",*/ "email", "name count", "put on some christmas music", "yes", "eskil", "nice",
                 "that's what she said", "play mario medley", "play chill music", "crowd goes wild", "where can i get this code?",
                 "what's your name", "eh", "hear crickets?", "open visual studio", "open V S Code", "open my git hub", "new random wallpaper" });
             GrammarBuilder gBuilder = new GrammarBuilder();
@@ -139,7 +139,7 @@ namespace VoiceRecTest
                     Console.WriteLine(Emil);
                     synthesizer.SpeakAsync("Emil has been said " + Emil + " times");
                     break;
-                case "nein nein nein":
+                case "nein nein nein nein":
                     Console.WriteLine("Nine!");
                     SoundPlayer player6 = new SoundPlayer($@"{ Path }\desktop\sounds\nein.wav");
                     player6.Play();
