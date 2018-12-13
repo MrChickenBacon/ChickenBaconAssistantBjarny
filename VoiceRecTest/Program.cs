@@ -63,9 +63,9 @@ namespace VoiceRecTest
                 /*"nein nein nein nein",*/ /*"no",*/ "email", "name count", "put on some christmas music", "yes", "Who is eskil?", "nice",
                 "that's what she said", "play mario medley", "play chill music", "crowd goes wild",
                 "where can i get this code?",
-                "what's your name", "eh", "hear crickets?", "open visual studio", "open V S Code", "open my git hub",
+                "what's your name", "eh", "hear crickets?", /*"open visual studio",*/ /*"open V S Code",*/ "open my git hub",
                 "new random wallpaper",
-                "help quamme is abusing you"
+                "help someone is abusing you"
             });
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
@@ -248,7 +248,7 @@ namespace VoiceRecTest
                     Process.Start("https://github.com/MrChickenBacon?tab=repositories");
                     synthesizer.SpeakAsync("Opening");
                     break;
-                case "help quamme is abusing you":
+                case "help someone is abusing you":
                     synthesizer.SpeakAsync("okidoki, i will come back in 1 minute.");
                     Thread.Sleep(60000);
                     synthesizer.SpeakAsync("I'm back!");
