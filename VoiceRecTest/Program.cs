@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Media;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -18,38 +19,48 @@ namespace VoiceRecTest
         public static string Mine { get; set; }
         public static int Emil { get; set; }
         public static string Path = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}";
-
+        public static SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine(new CultureInfo("en-US"));
+        private static readonly SpeechSynthesizer synthesizer = new SpeechSynthesizer();
         static Random random = new Random();
 
         static int Numbers()
         {
-            int number = random.Next(1, 550);
+            int number = random.Next(1, 500);
             return number;
         }
 
-        private static readonly SpeechSynthesizer synthesizer = new SpeechSynthesizer();
-
         static void Main(string[] args)
         {
+            synthesizer.SelectVoice("Microsoft Server Speech Text to Speech Voice (en-US, Helen)");
             SpeechRecoEngine();
-            SoundPlayer player0 = new SoundPlayer($@"{Path}\desktop\sounds\start.wav");
-            player0.Play();
+            using (SoundPlayer player = new SoundPlayer($@"{ Path }\desktop\sounds\start.wav"))
+            {
+                player.Play();
+            }
             Thread.Sleep(1000);
             Console.WriteLine("Waiting for voice input.");
-            Console.ReadLine();
+            Console.ReadKey();
         }
-
+        
         private static void SpeechRecoEngine()
         {
-            SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine();
             var gBuilder = CommandsGrammarBuilder();
             Grammar grammar = new Grammar(gBuilder);
             recEngine.LoadGrammarAsync(grammar);
-            recEngine.SetInputToDefaultAudioDevice();
-            //recEngine.SpeechRecognized += recEngine_Special;
+            try
+            {
+                recEngine.SetInputToDefaultAudioDevice();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Console.WriteLine();
+                Console.WriteLine("Please plug in a microphone.");
+                Console.ReadLine();
+                throw;
+            }
             recEngine.SpeechRecognized += recEngine_SpeechRecognized;
             recEngine.RecognizeAsync(RecognizeMode.Multiple);
-            //recEngine.
         }
 
         private static GrammarBuilder CommandsGrammarBuilder()
@@ -60,22 +71,17 @@ namespace VoiceRecTest
                 "bjarny", "hello computer", "put on country wallpaper", "put on bathman wallpaper", "say my name",
                 "open up browser chrome", "what day is it today",
                 "download a hot wallpaper", "play me a cool song", "qvamma", "payday payday", "i told him", "mine mine",
-                /*"nein nein nein nein",*/ /*"no",*/ "email", "name count", "put on some christmas music", "yes", "Who is eskil?", "nice",
+                "email", "name count", "put on some christmas music", "yes", "Who is eskil?", "Nice",
                 "that's what she said", "play mario medley", "play chill music", "crowd goes wild",
                 "where can i get this code?",
-                "what's your name", "eh", "hear crickets?", /*"open visual studio",*/ /*"open V S Code",*/ "open my git hub",
-                "new random wallpaper",
-                "help someone is abusing you"
+                "what's your name", "eh", "hear crickets?", "open my git hub",
+                "new random wallpaper", "thank you"
             });
+            //"help someone is abusing you" /*"nein nein nein nein",*/ /*"no",*/
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
             return gBuilder;
         }
-
-        //public static void recEngine_Special(object sender, SpeechRecognizedEventArgs e)
-        //{
-        //    Use in future ?
-        //}
 
         private static void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
@@ -188,15 +194,20 @@ namespace VoiceRecTest
                 case "Who is eskil?":
                     synthesizer.SpeakAsync("He's that guitar man right?");
                     break;
-                case "nice":
-                    Console.WriteLine("Nice");
-                    SoundPlayer player8 = new SoundPlayer($@"{ Path }\desktop\sounds\nice.wav");
-                    player8.Play();
+                case "Nice": //Problem with nice? Repeat? Loop? srandom number of times. Usually 3.
+                    using (SoundPlayer player = new SoundPlayer($@"{ Path }\desktop\sounds\nice.wav"))
+                    {
+                        player.Play();
+                        Console.WriteLine("Nice1");
+                    }
+                    Console.WriteLine("Nice2");
                     break;
                 case "that's what she said":
-                    Console.WriteLine("Yey");
-                    SoundPlayer player9 = new SoundPlayer($@"{ Path }\desktop\sounds\crowd laughter.wav");
-                    player9.Play();
+                    Console.WriteLine("HAHAHA");
+                    using (SoundPlayer player = new SoundPlayer($@"{ Path }\desktop\sounds\crowd laughter.wav"))
+                    {
+                        player.Play();
+                    }
                     break;
                 case "play mario medley":
                     Console.WriteLine("Playing.");
@@ -253,6 +264,10 @@ namespace VoiceRecTest
                     Thread.Sleep(60000);
                     synthesizer.SpeakAsync("I'm back!");
                     Console.WriteLine("Back!");
+                    break;
+                case "thank you":
+                    synthesizer.SpeakAsync("Anytime, boss!");
+                    Console.WriteLine(":)");
                     break;
             }
         }
