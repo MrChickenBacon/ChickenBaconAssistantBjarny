@@ -11,3 +11,4 @@ C:\KODING\VoiceRecTest\VoiceRecTest\bin\x64\Debug\VoiceRecTest.pdb
 C:\KODING\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.csproj.CoreCompileInputs.cache
 C:\KODING\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.exe
 C:\KODING\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.pdb
+C:\KODING\VoiceRecTest\VoiceRecTest\obj\x64\Debug\VoiceRecTest.csprojAssemblyReference.cache

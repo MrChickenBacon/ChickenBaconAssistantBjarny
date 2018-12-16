@@ -8,7 +8,7 @@ using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Threading;
 
-namespace VoiceRecTest
+namespace ChickenBaconAssistantBjarny
 {
     class Program
     {
@@ -75,9 +75,9 @@ namespace VoiceRecTest
                 "that's what she said", "play mario medley", "play chill music", "crowd goes wild",
                 "where can i get this code?",
                 "what's your name", "eh", "hear crickets?", "open my git hub",
-                "new random wallpaper", "thank you"
+                "new random wallpaper", "thank you", "nein nein nein nein"
             });
-            //"help someone is abusing you" /*"nein nein nein nein",*/ /*"no",*/
+            //"help someone is abusing you"  /*"no",*/
             GrammarBuilder gBuilder = new GrammarBuilder();
             gBuilder.Append(commands);
             return gBuilder;
@@ -235,8 +235,8 @@ namespace VoiceRecTest
                     player14.Play();
                     break;
                 case "where can i get this code?":
-                    Console.WriteLine("https://github.com/MrChickenBacon/ChickenBacon-Assistant");
-                    synthesizer.SpeakAsync("Look for ChickenBacon Assistant on github. Go to https://github.com/MrChickenBacon/ChickenBacon-Assistant");
+                    Console.WriteLine("https://github.com/MrChickenBacon/ChickenBaconAssistantTemplate");
+                    synthesizer.SpeakAsync("Look for ChickenBacon Assistant on github. Go to https://github.com/MrChickenBacon/ChickenBaconAssistantTemplate");
                     break;
                 case "open visual studio":
                     Console.WriteLine("Opening VS");

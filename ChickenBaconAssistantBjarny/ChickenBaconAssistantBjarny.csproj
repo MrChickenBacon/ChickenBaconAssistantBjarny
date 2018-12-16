@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7E49A660-7D7A-424D-BD4A-C946BE368661}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>VoiceRecTest</RootNamespace>
-    <AssemblyName>VoiceRecTest</AssemblyName>
+    <RootNamespace>ChickenBaconAssistantBjarny</RootNamespace>
+    <AssemblyName>ChickenBaconAssistantBjarny</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
