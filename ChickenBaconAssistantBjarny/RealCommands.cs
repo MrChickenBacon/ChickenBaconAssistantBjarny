@@ -19,7 +19,7 @@ namespace ChickenBaconAssistantBjarny
         public static string Mine { get; set; }
         public static int Emil { get; set; }
         public static string Path = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}";
-        public static SpeechRecognitionEngine recEngine = new SpeechRecognitionEngine(new CultureInfo("en-US"));
+        public static SpeechRecognitionEngine recEngine2 = new SpeechRecognitionEngine(new CultureInfo("en-US"));
         private static readonly SpeechSynthesizer synthesizer = new SpeechSynthesizer();
         static Random random = new Random();
 
@@ -34,10 +34,10 @@ namespace ChickenBaconAssistantBjarny
             synthesizer.SelectVoice("Microsoft Server Speech Text to Speech Voice (en-US, Helen)");
             var gBuilder = CommandsGrammarBuilder();
             Grammar grammar = new Grammar(gBuilder);
-            recEngine.LoadGrammarAsync(grammar);
+            recEngine2.LoadGrammarAsync(grammar);
             try
             {
-                recEngine.SetInputToDefaultAudioDevice();
+                recEngine2.SetInputToDefaultAudioDevice();
             }
             catch (Exception e)
             {
@@ -47,8 +47,8 @@ namespace ChickenBaconAssistantBjarny
                 Console.ReadLine();
                 throw;
             }
-            recEngine.SpeechRecognized += recEngine_SpeechRecognized;
-            recEngine.RecognizeAsync(RecognizeMode.Single);
+            recEngine2.SpeechRecognized += RecEngine2SpeechRecognized;
+            recEngine2.RecognizeAsync(RecognizeMode.Single);
         }
 
         private static GrammarBuilder CommandsGrammarBuilder()
@@ -71,7 +71,7 @@ namespace ChickenBaconAssistantBjarny
             return gBuilder;
         }
 
-        private static void recEngine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        private static void RecEngine2SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             switch (e.Result.Text)
             {
